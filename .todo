@@ -1,0 +1,17 @@
+{
+	"regex": {
+		"prefix": "(?:\\/\\*|\\/\\/|#) *@?(",
+		"suffix": "):? *(.*?) ?(?=\\*/|\\n|$)"
+	},
+	"tags": [
+		{ "name": "TODO", "color": "#275ec6" },
+		"FIX ?ME",
+		{ "name": "FUTURE", "color": "#1e9d2d" }
+	],
+	"case": false,
+	"search": {
+		"scope": "project",
+		"excludeFolders": ["node_modules","certificates","client/app/lib"],
+		"excludeFiles": []
+	}
+}
