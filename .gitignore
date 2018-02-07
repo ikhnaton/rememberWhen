@@ -9,3 +9,4 @@
 /dist/main.css.map
 /credentials/
 .DS_Store
+/vcap.local.js

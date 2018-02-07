@@ -19,6 +19,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.17.2",
+    "cloudant": "^1.10.0",
     "concurrently": "^3.5.0",
     "css-loader": "^0.28.7",
     "express": "^4.15.3",
