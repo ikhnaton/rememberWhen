@@ -14,27 +14,31 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "lodash": "^4.17.4",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
-  },
-  "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.17.2",
     "concurrently": "^3.5.0",
-    "eslint": "^4.9.0",
-    "eslint-plugin-react": "^7.4.0",
     "css-loader": "^0.28.7",
+    "express": "^4.15.3",
     "extract-text-webpack-plugin": "^3.0.2",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "nodemon": "^1.11.0",
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-error": "^1.0.6",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
     "style-loader": "^0.19.1",
     "webpack": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint-loader": "^1.9.0",
+    "nodemon": "^1.11.0",
+    "eslint": "^4.9.0",
+    "eslint-plugin-react": "^7.4.0"
   },
   "babel": {
     "presets": [
