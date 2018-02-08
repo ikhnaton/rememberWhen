@@ -4,6 +4,7 @@ import { Provider, connect } from 'react-redux';
 import Messages from 'react-error';
 import * as messageActions from 'react-error/actions';
 import store from './store';
+import { Button } from 'semantic-ui-react';
 import "./main.less";
 
 class App extends React.Component
@@ -19,9 +20,9 @@ class App extends React.Component
 			<div>
 				<MessageWrapper />
 				Hello Niall<br/>
-				<button onClick={ () => this.props.dispatch(messageActions.setMessageText("This would be an error.")) }>
+				<Button onClick={ () => this.props.dispatch(messageActions.setMessageText("This would be an error.")) }>
 					Click for error
-				</button>
+				</Button>
 
 			</div>
 		);
