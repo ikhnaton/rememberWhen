@@ -1,5 +1,5 @@
 ---
 applications:
- - name: ninja
+ - name: dev-yourcreation
    instances: 2
-   memory: 1024M
+   memory: 128M
