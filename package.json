@@ -40,12 +40,12 @@
     "semantic-ui-react": "^0.78.2",
     "style-loader": "^0.20.2",
     "webpack": "^3.11.0",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+	"eslint": "^4.18.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-react": "^7.7.0"
   },
   "devDependencies": {
-    "eslint": "^4.18.1",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-react": "^7.7.0",
     "nodemon": "^1.15.1"
   },
   "babel": {
@@ -54,6 +54,6 @@
     ]
   },
   "engines": {
-    "node": "=7.10.0"
+    "node": "9.6.1"
   }
 }

@@ -1,5 +1,5 @@
 ---
 applications:
  - name: dev-yourcreation
-   instances: 2
-   memory: 128M
+   instances: 1
+   memory: 256M
