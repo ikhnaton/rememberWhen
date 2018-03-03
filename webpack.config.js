@@ -3,30 +3,38 @@ const path = require('path');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-//const extractLess = new ExtractTextPlugin({
-//    filename: "[name].[contenthash].css",
-////    disable: process.env.NODE_ENV === "development"
-//});
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-	entry: path.join(__dirname, '/src/app.jsx'),
+	entry: {
+		bundle: path.join(__dirname, '/src/app.jsx'),
+		backend: path.join(__dirname, '/server/server.js'),
+	},
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].js',
 		path: path.join(__dirname, '/dist')
 	},
+	externals: ['express'],
 	stats: {
 		colors: true
 	},
 	devtool: 'source-map',
+	node: {
+	  fs: 'empty',
+	  tls: 'empty',
+	  module: 'empty',
+	  node: 'empty',
+	  net: 'empty'
+	},
 	module: {
 		loaders: [
 			{
 				enforce: "pre",
 				test: [/\.js$/, /\.jsx$/],
-				exclude: /node_modules/,
+				exclude: [/node_modules/,/lib/,/vcap.local.js/],
 				loader: "eslint-loader",
 				options: {
-				  // eslint options (if necessary)
+//					config: path.resolve(__dirname, '.eslintrc.js'),
 				}
 			},
 			{
@@ -45,6 +53,12 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin("main.css"),
+		new CopyWebpackPlugin([
+			{ from: 'src/index.html', to: 'index.html' },
+			{ from: 'src/images', to: 'images' },
+			{ from: 'node_modules/semantic-ui-css/themes', to: 'themes' },
+			{ from: 'node_modules/semantic-ui-css/semantic.css', to: '.' }
+		], {})
 	],
 	watch: true
 

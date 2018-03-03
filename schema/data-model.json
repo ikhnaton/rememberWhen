@@ -1,0 +1,61 @@
+{
+    "_id":1,
+    "_rev":1,
+    "name":"my resume",
+
+    "basic-info": {
+        "first-name":"",
+        "last-name":"",
+        "email":"",
+        "phone-numbers":[
+            {
+                "mobile":"213-123-4567"
+            },
+            {
+                "office":"213-123-4567"
+            }
+        ],
+        "websites":[
+            {
+                "personal":"http://me.com"
+            },
+            {
+                "company":"http://me.biz"
+            }
+        ],
+        "address-1":"",
+        "address-2":"",
+        "city":"",
+        "state":"",
+        "zipcode":"",
+        "photo":"base64 image"
+    },
+    "work-experience": [
+        {
+            "job-title":"",
+            "company-name":"",
+            "start-date":"",
+            "end-date":"",
+            "info":""
+        }
+    ],
+    "qualifications": "",
+    "education":[
+        {
+            "course-name":"",
+            "institution-name":"",
+            "start-date":"",
+            "end-date":"",
+            "info":""
+        }
+    ],
+    "interests":"",
+    "references":"",
+    "sections":[
+        {
+            "name":"",
+            "info":""
+        }
+    ]
+
+}

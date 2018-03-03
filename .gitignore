@@ -10,3 +10,7 @@
 /credentials/
 .DS_Store
 /vcap.local.js
+/package-lock.json
+/dist/backend.js
+/dist/backend.js.map
+/dist/

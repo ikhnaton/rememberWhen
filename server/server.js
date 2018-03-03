@@ -1,4 +1,4 @@
-if (process.env.VCAP_SERVICES == null)
+if (typeof process.env.VCAP_SERVICES === "undefined")
 {
 	process.env.VCAP_SERVICES = JSON.stringify(require('../vcap.local'));
 }
