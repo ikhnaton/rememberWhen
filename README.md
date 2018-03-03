@@ -4,7 +4,7 @@ To use:
 
 1. clone the repo
 >`git clone https://github.com/ikhnaton/rememberWhen`
-1. enter the `ResumeNinja` directory
+1. enter the `rememberWhen` directory
 >`cd rememberWhen`
 1. install the dependencies
 >`npm install`
