@@ -3,14 +3,7 @@
 # Example .gitignore files: https://github.com/github/gitignore
 /bower_components/
 /node_modules/
-/dist/bundle.js
-/dist/bundle.js.map
-/dist/main.css
-/dist/main.css.map
 /credentials/
 .DS_Store
 /vcap.local.js
 /package-lock.json
-/dist/backend.js
-/dist/backend.js.map
-/dist/
