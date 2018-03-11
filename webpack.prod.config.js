@@ -1,26 +1,25 @@
-const webpack = require('webpack');
 const path = require('path');
-
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = {
-	entry: {
-		bundle: path.join(__dirname, '/src/app.jsx'),
-		backend: path.join(__dirname, '/server/server.js'),
-	},
+const pluginConfigs = {
+	ExtractTextPlugin: new ExtractTextPlugin("main.css"),
+	CopyWebpackPlugin: new CopyWebpackPlugin([
+			{ from: 'src/index.html', to: 'index.html' },
+			{ from: 'src/images', to: 'images' },
+			{ from: 'node_modules/semantic-ui-css/themes', to: 'themes' },
+			{ from: 'node_modules/semantic-ui-css/semantic.css', to: '.' }
+		], {}),
+	UglifyJsPlugin:	new UglifyJsPlugin()
+};
+
+const baseConfig = {
 	output: {
 		filename: '[name].js',
 		path: path.join(__dirname, '/dist')
 	},
-	externals: ['express'],
-	node: {
-	  fs: 'empty',
-	  tls: 'empty',
-	  module: 'empty',
-	  node: 'empty',
-	  net: 'empty'
-	},
+	stats: "errors-only",
 	module: {
 		loaders: [
 			{
@@ -44,14 +43,32 @@ module.exports = {
 				})
 			}
 		]
-	},
-	plugins: [
-		new ExtractTextPlugin("main.css"),
-		new CopyWebpackPlugin([
-			{ from: 'src/index.html', to: 'index.html' },
-			{ from: 'src/images', to: 'images' },
-			{ from: 'node_modules/semantic-ui-css/themes', to: 'themes' },
-			{ from: 'node_modules/semantic-ui-css/semantic.css', to: '.' }
-		], {})
-	]
+	}
 };
+
+const clientConfig = Object.assign({}, baseConfig, {
+	entry: {
+		bundle: path.join(__dirname, '/src/app.jsx')
+	},
+	target: 'web',
+	plugins: [
+		pluginConfigs.ExtractTextPlugin,
+		pluginConfigs.CopyWebpackPlugin,
+		pluginConfigs.UglifyJsPlugin
+	]
+})
+
+const serverConfig = Object.assign({}, baseConfig, {
+	entry: {
+		backend: path.join(__dirname, '/server/server.js')
+	},
+	target: 'node',
+	plugins: [
+		pluginConfigs.ExtractTextPlugin,
+		pluginConfigs.UglifyJsPlugin
+	]
+//	externals: ['express']
+})
+
+module.exports = [ clientConfig, serverConfig ]
+module.exports.pluginConfigs = pluginConfigs;

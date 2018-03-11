@@ -3,8 +3,17 @@ const express = require('express');
 const router = require('express').Router();
 const path = require('path');
 
-router.use("/", express.static(path.join(__dirname, '/../../dist')));
+router.use("/", express.static(path.join(path.resolve(), 'dist')));
 
-//router.use('/api', require('./users'));
+const frontEndRoutes = [
+	"/create",
+	"/gallery",
+	"/pricing",
+	"/login"
+];
+
+frontEndRoutes.map(route => router.use(route, express.static(path.resolve('.', 'dist/index.html'))));
+
+//router.use('/api/typeform', require('./typeform'));
 
 module.exports = router;

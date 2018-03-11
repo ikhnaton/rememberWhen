@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const defaultPort = 9999;
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
