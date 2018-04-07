@@ -14,6 +14,11 @@ const frontEndRoutes = [
 
 frontEndRoutes.map(route => router.use(route, express.static(path.resolve('.', 'dist/index.html'))));
 
-//router.use('/api/typeform', require('./typeform'));
+/* router.post('/test_1', (req, res) => {
+	// console.log(req.headers);
+	// console.log(req.body);
+	res.send('YO!');
+	res.end();
+}); */
 
 module.exports = router;
