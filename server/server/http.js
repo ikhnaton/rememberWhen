@@ -74,7 +74,7 @@ app.post('/process_image/?', (req, res) => {
 
 					newImg.blit(img, 200, 50);
 					Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then((font) => {
-						newImg.print(font, 220, 80, "Happy Birthday", 360);
+						newImg.print(font, 280, 10, "Happy Birthday");
 						newImg.getBuffer(Jimp.AUTO, (errGB, buffer) => {
 							if (errGB) {
 								console.error(errGB);
