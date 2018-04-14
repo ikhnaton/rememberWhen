@@ -65,16 +65,35 @@ app.post('/process_image/?', (req, res) => {
 				const w = img.bitmap.width;
 				const h = img.bitmap.height;
 				img.crop(x1, y1, x2 - x1, y2 - y1);
-				img.resize(400, 400);
-				new Jimp(800, 500, 0x0000FFFF, (errNew, newImg) => {
+				img.resize(800, 800);
+				new Jimp(1600, 1000, 0x0000FFFF, (errNew, newImg) => {
 					if (errNew) {
 						console.error(errNew);
 						return;
 					}
 
-					newImg.blit(img, 200, 50);
-					Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then((font) => {
-						newImg.print(font, 280, 10, "Happy Birthday");
+					newImg.blit(img, 400, 100);
+					for(let x=0; x < 1600; x++) {
+						for(let y=0; y < 1000; y++) {
+							if(x < 20 || x >= 1580 || y < 20 || y >= 980) {
+								if(x%10 < 5) {
+									if(y%10 < 5) {
+										newImg.setPixelColor(0x000000FF, x, y);
+									} else {
+										newImg.setPixelColor(0xFFFFFFFF, x, y);
+									}
+								} else {
+									if(y%10 < 5) {
+										newImg.setPixelColor(0xFFFFFFFF, x, y);
+									} else {
+										newImg.setPixelColor(0x000000FF, x, y);
+									}
+								}
+							}
+						}
+					}
+					Jimp.loadFont(Jimp.FONT_SANS_64_WHITE).then((font) => {
+						newImg.print(font, 600, 40, "Happy Birthday!");
 						newImg.getBuffer(Jimp.AUTO, (errGB, buffer) => {
 							if (errGB) {
 								console.error(errGB);
