@@ -1,16 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter, Link } from 'react-router-dom';
 import { Provider, connect } from 'react-redux';
 import Messages from 'react-error';
 import * as messageActions from 'react-error/actions';
 import store from './store';
 import { Header, Card, Divider, Menu, Grid, Image } from 'semantic-ui-react';
-import { Home } from './components/home/home.jsx';
-import { Gallery } from './components/gallery/gallery.jsx';
-import { Pricing } from './components/pricing/pricing.jsx';
-import { CreateNow } from './components/create/create.jsx';
-import { Login } from './components/login/login.jsx';
 import "./reset.less";
 import "./main.less";
 
@@ -21,39 +15,76 @@ class App extends React.Component
 		super(props);
 	}
 
+	componentDidMount()
+	{
+		const qs = document;
+		const s = document;
+		const d = document;
+		let js = document;
+		let q = document;
+		const gi = d.getElementById;
+		const ce = d.createElement;
+		const gt = d.getElementsByTagName;
+		const id = "typef_orm_share";
+		const b = "https://embed.typeform.com/";
+		if (!gi.call(d, id))
+		{
+			js = ce.call(d, "script");
+			js.id = id;
+			js.src = `${b}embed.js`;
+			q = gt.call(d, "script")[0];
+			q.parentNode.insertBefore(js, q);
+		}
+	}
+
 	render()
 	{
 		return (
-			<BrowserRouter>
-				<div>
-					<Header className="mainheader" textAlign="center">
-						<Header.Subheader className="subheader">
-							<Menu className="menu">
-								<Menu.Item><Link to="/">About</Link></Menu.Item>
-								<Menu.Item><Link to="/gallery">Gallery</Link></Menu.Item>
-								<Menu.Item><Link to="/pricing">Pricing</Link></Menu.Item>
-								<Menu.Item><Link to="/create">Create NOW</Link></Menu.Item>
-								<Menu.Item><Link to="/login">Sign In</Link></Menu.Item>
-							</Menu>
-						</Header.Subheader>
-						<Header.Content className="main" >
-							Your-Creations
-							<Divider horizontal={true} fitted={true} className="divider"/>
-						</Header.Content>
-					</Header>
-					<Grid>
-						<Grid.Row>
-							<Grid.Column textAlign="center">
-								<Route path="/" exact component={ Home } />
-								<Route path="/create" component={ CreateNow } />
-								<Route path="/pricing" component={ Pricing } />
-								<Route path="/gallery" component={ Gallery } />
-								<Route path="/login" component={ Login } />
-							</Grid.Column>
-						</Grid.Row>
-					</Grid>
-				</div>
-			</BrowserRouter>
+			<div>
+				<Header className="mainheader" textAlign="center">
+					<Header.Subheader className="subheader">
+						<Menu className="menu">
+							<Menu.Item>About</Menu.Item>
+							<Menu.Item>Gallery</Menu.Item>
+							<Menu.Item>Pricing</Menu.Item>
+							<Menu.Item>Create NOW</Menu.Item>
+							<Menu.Item>Sign In</Menu.Item>
+						</Menu>
+					</Header.Subheader>
+					<Header.Content className="main" >
+						Your-Creations
+						<Divider horizontal={true} fitted={true} className="divider"/>
+					</Header.Content>
+				</Header>
+				<Grid>
+					<Grid.Row>
+						<Grid.Column>
+							<Image src="images/main.png" verticalAlign="middle" centered={true}/>
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row>
+						<Grid.Column>
+							<a className="typeform-share button remember-typeform"
+								href="https://daphane.typeform.com/to/RLpMoY"
+								data-mode="popup"
+								verticalAlign="middle"
+								horizontalAlign="middle"
+								target="_blank">Card Creation Questionaire</a>
+
+						</Grid.Column>
+					</Grid.Row>
+					<Grid.Row>
+						<Grid.Column>
+							<a className="typeform-share button remember-typeform2"
+								href="https://daphane.typeform.com/to/tV3EC0"
+								data-mode="popup"
+								verticalAlign="middle"
+								horizontalAlign="middle"
+								target="_blank">Payment Questionaire</a>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
+			</div>
 		);
 	}
 }
