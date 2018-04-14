@@ -73,20 +73,23 @@ app.post('/process_image/?', (req, res) => {
 					}
 
 					newImg.blit(img, 400, 100);
-					for(let x=0; x < 1600; x++) {
-						for(let y=0; y < 1000; y++) {
-							if(x < 20 || x >= 1580 || y < 20 || y >= 980) {
-								if(x%10 < 5) {
-									if(y%10 < 5) {
-										newImg.setPixelColor(0x000000FF, x, y);
+					const borderSquareSize = 10;
+					const blackHex = 0x000000FF;
+					const whiteHex = 0xFFFFFFFF;
+					for (let x=0; x < 1600; x++) {
+						for (let y=0; y < 1000; y++) {
+							if (x < 20 || x >= 1580 || y < 20 || y >= 980) {
+								if (x%(2*borderSquareSize) < borderSquareSize) {
+									if (y % (2*borderSquareSize) < borderSquareSize) {
+										newImg.setPixelColor(blackHex, x, y);
 									} else {
-										newImg.setPixelColor(0xFFFFFFFF, x, y);
+										newImg.setPixelColor(whiteHex, x, y);
 									}
 								} else {
-									if(y%10 < 5) {
-										newImg.setPixelColor(0xFFFFFFFF, x, y);
+									if (y % (2*borderSquareSize) < borderSquareSize) {
+										newImg.setPixelColor(whiteHex, x, y);
 									} else {
-										newImg.setPixelColor(0x000000FF, x, y);
+										newImg.setPixelColor(blackHex, x, y);
 									}
 								}
 							}
