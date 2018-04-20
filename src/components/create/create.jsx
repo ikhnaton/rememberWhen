@@ -1,18 +1,24 @@
 import React from 'react';
-import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
+import { SketchPicker } from 'react-color';
 
 class Accept extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			accepted: [],
-			rejected: []
+			rejected: [],
+			imagePreviewUrl: '',
+			color1: '#ffffff'
+		};
+		this.handleChangeComplete = (color) => {
+			this.setState({ color1: color.hex });
 		};
 	}
 
 	render() {
-		const { imagePreviewUrl } = this.state;
+		const { imagePreviewUrl, color1 } = this.state;
 		let $imagePreview = null;
 		if (imagePreviewUrl) {
 			$imagePreview = <div><img style= {
@@ -43,11 +49,13 @@ class Accept extends React.Component {
 									});
 									const fileAsBinaryString = reader.result;
 									const fileAsBase64String = btoa(fileAsBinaryString);
+									console.log(this.state.color1);
 									axios.post('/process_image', {
-										imageBase64: fileAsBase64String
+										imageBase64: fileAsBase64String,
+										color1: this.state.color1
 									}).
 										then(response => {
-											console.log(response.status);
+											// console.log(response.status);
 											// console.log(response.data);
 											const byteCharacters = atob(response.data);
 											const byteNumbers = new Array(byteCharacters.length);
@@ -61,9 +69,7 @@ class Accept extends React.Component {
 								};
 								readerD.onloadend = () => {
 									this.setState({
-										imagePreviewUrl: readerD.result,
-										accepted: [],
-										rejected: []
+										imagePreviewUrl: readerD.result
 									});
 								};
 								reader.readAsBinaryString(accepted[idx0]);
@@ -72,6 +78,12 @@ class Accept extends React.Component {
 					>
 						<p>Only *.jpeg and *.png images will be accepted</p>
 					</Dropzone>
+				</div>
+				<div>
+					<SketchPicker
+						color={this.state.color1}
+						onChangeComplete={this.handleChangeComplete}
+					/>
 				</div>
 				<aside style={ { marginBottom: '20px' } }>
 					{$imagePreview}

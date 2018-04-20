@@ -19,12 +19,15 @@ app.post('/process_image/?', (req, res) => {
 	// console.log(req.body);
 	let imageB64 = req.body.imageBase64;
 	const image = Buffer.from(req.body.imageBase64, 'base64');
+	const color1 = req.body.color1;
+	console.log(color1);
 
 	const idx0 = 0;
 	const idx1 = 1;
 	const idx2 = 2;
-	const ar1to1 = 1.0;
-	const prefAspectRatios = [ar1to1];
+	// const ar1to1 = 1.0;
+	const ar110to85 = 1.294;
+	const prefAspectRatios = [ar110to85];
 	axios.post('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAej2COhQ1bffGrHWRyLpkMmMg7GJ3OIc8', {
 		"requests": [
 			{
@@ -62,31 +65,32 @@ app.post('/process_image/?', (req, res) => {
 					console.error(errRead);
 					return;
 				}
-				const w = img.bitmap.width;
-				const h = img.bitmap.height;
+				const w = 1700;
+				const h = 2200;
+				const backgroundTop = parseInt('0x'+color1.substring(1)+'ff', 16);
 				img.crop(x1, y1, x2 - x1, y2 - y1);
-				img.resize(800, 800);
-				new Jimp(1600, 1000, 0x0000FFFF, (errNew, newImg) => {
+				img.resize(550, 425);
+				new Jimp(w, h, backgroundTop, (errNew, newImg) => {
 					if (errNew) {
 						console.error(errNew);
 						return;
 					}
 
 					newImg.blit(img, 400, 100);
-					const borderSquareSize = 10;
+					const squareSize = 10;
 					const blackHex = 0x000000FF;
 					const whiteHex = 0xFFFFFFFF;
-					for (let x=0; x < 1600; x++) {
-						for (let y=0; y < 1000; y++) {
-							if (x < 20 || x >= 1580 || y < 20 || y >= 980) {
-								if (x%(2*borderSquareSize) < borderSquareSize) {
-									if (y % (2*borderSquareSize) < borderSquareSize) {
+					for (let x=0; x < w; x++) {
+						for (let y=0; y < h; y++) {
+							if (x < 20 || x >= w-20 || y < 20 || y >= h-20) {
+								if (x%(2*squareSize) < squareSize) {
+									if (y % (2 * squareSize) < squareSize) {
 										newImg.setPixelColor(blackHex, x, y);
 									} else {
 										newImg.setPixelColor(whiteHex, x, y);
 									}
 								} else {
-									if (y % (2*borderSquareSize) < borderSquareSize) {
+									if (y % (2 * squareSize) < squareSize) {
 										newImg.setPixelColor(whiteHex, x, y);
 									} else {
 										newImg.setPixelColor(blackHex, x, y);
