@@ -69,7 +69,7 @@ module.exports =
         "lines-around-comment": 2,
         "lines-around-directive": 2,
         "max-depth": 2,
-        "max-len": [2, { "code": 120, "ignoreComments": true }],
+        "max-len": [2, { "code": 220, "ignoreComments": true }],
         "max-lines": 0,
         "max-nested-callbacks": 2,
         "max-params": 2,
