@@ -16,7 +16,7 @@ frontEndRoutes.map(route => router.use(route, express.static(path.resolve('.', '
 
 router.get("/image", (req, res, next) => {
 
-})
+});
 //router.use('/api/typeform', require('./typeform'));
 
 const Jimp = require("jimp");
